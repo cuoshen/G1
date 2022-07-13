@@ -15,27 +15,22 @@ namespace G1
         public string Name => name;
 
         [SerializeField]
-        private List<IngredientContainer> ingredientContainers;
+        private IngredientContainer ingredientContainer;
 
-        private List<IngredientCollection> ingredients;
-        public ICollection<IngredientCollection> Ingredients => ingredients;
+        private IngredientCollection ingredients;
+        public IngredientCollection Ingredients => ingredients;
 
         public void MapIngredients()
         {
-            ingredients = new List<IngredientCollection>();
-            foreach (IngredientContainer container in ingredientContainers)
-            {
-                ingredients.Add(new IngredientCollection(container));
-            }
+            ingredients = new IngredientCollection(ingredientContainer);
         }
 
         public Meal()
         {
-            ingredients = new List<IngredientCollection>();
             name = "Invalid";
         }
 
-        public Meal(string name, List<IngredientCollection> ingredients)
+        public Meal(string name, IngredientCollection ingredients)
         {
             this.name = name;
             this.ingredients = ingredients;

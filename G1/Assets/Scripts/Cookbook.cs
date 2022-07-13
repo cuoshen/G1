@@ -9,17 +9,14 @@ namespace G1
     {
         [SerializeField]
         private List<Meal> meals;
-        private Dictionary<IngredientCollection, Meal> ingredientsToMeal = new Dictionary<IngredientCollection, Meal>();
+        private List<IngredientCollection> ingredientsForEachMeal = new List<IngredientCollection>();
 
         public void InitializeMappings()
         {
             foreach(Meal meal in meals)
             {
                 meal.MapIngredients();
-                foreach (IngredientCollection ingredient in meal.Ingredients)
-                {
-                    ingredientsToMeal.Add(ingredient, meal);
-                }
+                ingredientsForEachMeal.Add(meal.Ingredients);
             }
 
             Debug.Log("Mappings initialized in cookbook");
@@ -27,14 +24,15 @@ namespace G1
 
         public Meal MealFromIngredients(IngredientCollection ingredients)
         {
-            if (ingredientsToMeal.ContainsKey(ingredients))
+            for (int i = 0; i < meals.Count; i++)
             {
-                return ingredientsToMeal[ingredients];
+                if (ingredientsForEachMeal[i] == ingredients)
+                {
+                    return meals[i];
+                }
             }
-            else
-            {
-                return new Meal();  // Invalid
-            }
+
+            return new Meal();
         }
     }
 }
