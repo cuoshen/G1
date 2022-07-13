@@ -9,9 +9,6 @@ namespace G1
         [SerializeField]
         private Cookbook cookbook;
 
-        [SerializeField]
-        private Ingredient testIngredient;
-
         public IngredientCollection CurrentCollection { get; private set; } = new IngredientCollection();
 
         public Meal MakeMeal()

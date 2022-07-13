@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69ebe6fbf3a4204798e38c7eb2fcefe, type: 3}
-  m_Name: Example Cookbook
+  m_Script: {fileID: 11500000, guid: 6575396bcd22bf74787e40f204dccebd, type: 3}
+  m_Name: "\u5496\u5561\u679C\u51BB"
   m_EditorClassIdentifier: 
-  meals:
-  - name: Gyoza
-    ingredientContainer: {fileID: 0}
-  - name: Karaage
-    ingredientContainer: {fileID: 0}
+  Content:
+  - {fileID: 11400000, guid: 5b91e957ea9857748991c4d5e6377818, type: 2}
