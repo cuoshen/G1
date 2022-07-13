@@ -4,28 +4,28 @@ using UnityEngine;
 
 namespace G1
 {
-    /// <summary>
-    /// Basically serves as a big dictionary which maps collections of ingredients to products
-    /// </summary>
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Cookbook", order = 1)]
     class Cookbook : ScriptableObject
     {
         [SerializeField]
         private List<Meal> meals;
-        private Dictionary<IngredientCollection, Meal> ingredientsToMeal;
+        private Dictionary<IngredientCollection, Meal> ingredientsToMeal = new Dictionary<IngredientCollection, Meal>();
 
         public void InitializeMappings()
         {
             foreach(Meal meal in meals)
             {
+                meal.MapIngredients();
                 foreach (IngredientCollection ingredient in meal.Ingredients)
                 {
                     ingredientsToMeal.Add(ingredient, meal);
                 }
             }
+
+            Debug.Log("Mappings initialized in cookbook");
         }
 
-        public Meal FromIngredients(IngredientCollection ingredients)
+        public Meal MealFromIngredients(IngredientCollection ingredients)
         {
             if (ingredientsToMeal.ContainsKey(ingredients))
             {

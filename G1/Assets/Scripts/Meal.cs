@@ -12,10 +12,22 @@ namespace G1
     {
         [SerializeField]
         private string name;
+        public string Name => name;
 
         [SerializeField]
+        private List<IngredientContainer> ingredientContainers;
+
         private List<IngredientCollection> ingredients;
         public ICollection<IngredientCollection> Ingredients => ingredients;
+
+        public void MapIngredients()
+        {
+            ingredients = new List<IngredientCollection>();
+            foreach (IngredientContainer container in ingredientContainers)
+            {
+                ingredients.Add(new IngredientCollection(container));
+            }
+        }
 
         public Meal()
         {
@@ -27,6 +39,7 @@ namespace G1
         {
             this.name = name;
             this.ingredients = ingredients;
+            MapIngredients();
         }
     }
 }

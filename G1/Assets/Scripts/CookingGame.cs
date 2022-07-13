@@ -9,9 +9,30 @@ namespace G1
         [SerializeField]
         private Cookbook cookbook;
 
+        [SerializeField]
+        private Ingredient testIngredient;
+
+        public IngredientCollection CurrentCollection { get; private set; } = new IngredientCollection();
+
         public Meal MakeMeal()
         {
-            return new Meal();
+            return cookbook.MealFromIngredients(CurrentCollection);
+        }
+
+        public void ClearCollection()
+        {
+            CurrentCollection.Clear();
+        }
+
+        public void OnMakeMealButtonHit()
+        {
+            Debug.Log("Making meal...");
+            Debug.Log("Made " + MakeMeal().Name);
+        }
+
+        public void Start()
+        {
+            cookbook.InitializeMappings();
         }
     }
 }
